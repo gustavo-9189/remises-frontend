@@ -1,0 +1,19 @@
+<form class="form-horizontal" align="center">
+    <div class="form-group">
+        <div class="col-md-4">
+            <img class="img-responsive" src="../assets/images/warning.png" width="70" height="70">
+        </div>
+        <div class="col-md-8">
+            <h4>¿Esta seguro que desea eliminar este registro?</h4>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-md-6">
+            <button type="button" (click)="acceptDelete()" class="btn btn-success"> Aceptar <span class="glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" (click)="closeModal()" class="btn btn-success"> Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+        </div>
+    </div>
+</form>

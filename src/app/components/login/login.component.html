@@ -1,0 +1,43 @@
+<div class="container">
+    <form novalidate [formGroup]="myform" class="well form-vertical">
+        <fieldset>
+            <legend>Iniciar Sesion</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Usuario</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': user.invalid && (user.dirty || user.touched), 
+                        'has-success': user.valid && (user.dirty || user.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input formControlName="user" placeholder="Ingrese el Usuario / Correo Electronico" class="form-control" type="text" maxlength="50"
+                            required>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Contraseña</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': pass.invalid && (pass.dirty || pass.touched), 
+                        'has-success': pass.valid && (pass.dirty || pass.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input formControlName="pass" placeholder="Ingrese la Contraseña" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <br>
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+                <button type="button" (click)="enviar()" class="btn btn-success">
+                        Enviar <span class="glyphicon glyphicon-send"></span>
+                    </button>
+            </div>
+        </div>
+    </form>
+</div>

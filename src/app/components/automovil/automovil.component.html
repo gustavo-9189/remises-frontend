@@ -1,0 +1,69 @@
+<div class="container">
+    <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()" class="well form-horizontal">
+        <fieldset>
+            <legend>Automóvil</legend>
+            <div class="form-group" [ngClass]="{ 
+                     'has-danger': marca.invalid && (marca.dirty || marca.touched), 
+                     'has-success': marca.valid && (marca.dirty || marca.touched)
+                }">
+                <label class="col-md-4 control-label">Marca</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="marca" placeholder="Ingrese la Marca" class="form-control" type="text" required>
+                        <!-- <div class="form-control-feedback" *ngIf="marca.errors && (marca.dirty || marca.touched)">
+                            <p *ngIf="marca.errors.required">El campo Marca es requerido</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{
+                    'has-danger': modelo.invalid && (modelo.dirty || modelo.touched), 
+                    'has-success': modelo.valid && (modelo.dirty || modelo.touched)
+                }">
+                <label class="col-md-4 control-label">Modelo</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="modelo" placeholder="Ingrese el Modelo" class="form-control" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 
+                    'has-danger': patente.invalid && (patente.dirty || patente.touched), 
+                    'has-success': patente.valid && (patente.dirty || patente.touched)
+                }">
+                <label class="col-md-4 control-label">Patente</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="patente" placeholder="Ingrese la Patente" class="form-control" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 
+                    'has-danger': anio.invalid && (anio.dirty || anio.touched), 
+                    'has-success': anio.valid && (anio.dirty || anio.touched) 
+                }">
+                <label class="col-md-4 control-label">Año</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="anio" placeholder="Ingrese el Año" class="form-control" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Success message -->
+            <!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div> -->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

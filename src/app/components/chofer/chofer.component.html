@@ -1,0 +1,158 @@
+<div class="container">
+    <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()" class="well form-horizontal">
+        <fieldset>
+            <legend>Alta de Chofer</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': nombre.invalid && (nombre.dirty || nombre.touched), 
+                        'has-success': nombre.valid && (nombre.dirty || nombre.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input formControlName="nombre" placeholder="Ingrese el Nombre" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Apellido</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': apellido.invalid && (apellido.dirty || apellido.touched), 
+                        'has-success': apellido.valid && (apellido.dirty || apellido.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input formControlName="apellido" placeholder="Ingrese el Apellido" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">D.N.I.</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': dni.invalid && (dni.dirty || dni.touched), 
+                        'has-success': dni.valid && (dni.dirty || dni.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="dni" placeholder="Ingrese el D.N.I." class="form-control" type="text" maxlength="8" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Teléfono</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': telefono.invalid && (telefono.dirty || telefono.touched), 
+                        'has-success': telefono.valid && (telefono.dirty || telefono.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input formControlName="telefono" placeholder="(011)555-1212" class="form-control" type="text" maxlength="20" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Correo Electrónico</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': email.invalid && (email.dirty || email.touched), 
+                        'has-success': email.valid && (email.dirty || email.touched) 
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input formControlName="email" placeholder="Ingrese el correo electrónico" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Dirección</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': direccion.invalid && (direccion.dirty || direccion.touched), 
+                        'has-success': direccion.valid && (direccion.dirty || direccion.touched) 
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input formControlName="direccion" placeholder="Ingrese la Dirección" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Código Postal</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched), 
+                        'has-success': codigoPostal.valid && (codigoPostal.dirty || codigoPostal.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input formControlName="codigoPostal" placeholder="Ingrese el Código Postal" class="form-control" type="text" maxlength="6" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Ciudad</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select name="ciudad" placeholder="Seleccione la Ciudad" class="form-control selectpicker">
+                            <option>González Catán</option>
+                            <option>San Justo</option>
+                            <option>Gregorio de Laferrere</option>
+                            <option>Isidro Casanova</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <legend>Datos del Vehículo</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Marca</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': marca.invalid && (marca.dirty || marca.touched), 
+                        'has-success': marca.valid && (marca.dirty || marca.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="marca" placeholder="Ingrese la Marca" class="form-control" type="text" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Modelo</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': modelo.invalid && (modelo.dirty || modelo.touched), 
+                        'has-success': modelo.valid && (modelo.dirty || modelo.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="modelo" placeholder="Ingrese el Modelo" class="form-control" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Patente</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': patente.invalid && (patente.dirty || patente.touched), 
+                        'has-success': patente.valid && (patente.dirty || patente.touched) 
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="patente" placeholder="Ingrese la Patente" class="form-control" type="text" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Año</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-danger': anio.invalid && (anio.dirty || anio.touched), 
+                        'has-success': anio.valid && (anio.dirty || anio.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="anio" placeholder="Ingrese el Año" class="form-control" type="text" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-1">
+                    <button type="button" (click)="back()" class="btn btn-success">
+                        Atrás <span class="glyphicon glyphicon-chevron-left"></span>
+                    </button>
+                </div>
+                <label class="col-md-1 control-label"></label>
+                <div class="col-md-5">
+                    <button type="submit" (click)="onSubmit()" class="btn btn-success">
+                        Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

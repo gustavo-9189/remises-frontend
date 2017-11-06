@@ -1,0 +1,63 @@
+<div class="container">
+    <legend>Choferes</legend>
+    <div class="grid-container mat-elevation-z8">
+        <div class="grid-header">
+            <div class="col-md-12">
+                <md-form-field class="buscador" floatPlaceholder="never">
+                    <input mdInput #filter placeholder="Buscador  (filtrar por DNI o Nombre y Apellido)">
+                </md-form-field>
+            </div>
+            <div class="col-md-3">
+                <button type="button" [routerLink]="['/chofer']" class="btn btn-success">
+                        Nuevo Chofer <span class="glyphicon glyphicon-user"></span>
+                    </button>
+            </div>
+        </div>
+        <md-table #table [dataSource]="dataSource" mdSort>
+            <ng-container mdColumnDef="nombre">
+                <md-header-cell *mdHeaderCellDef md-sort-header> NOMBRE </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.nombre}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="apellido">
+                <md-header-cell *mdHeaderCellDef md-sort-header> APELLIDO </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.apellido}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="dni">
+                <md-header-cell *mdHeaderCellDef md-sort-header> D.N.I. </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.dni}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="direccion">
+                <md-header-cell *mdHeaderCellDef md-sort-header> DIRECCIÓN </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.direccion}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="ciudad">
+                <md-header-cell *mdHeaderCellDef md-sort-header> CIUDAD </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.ciudad}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="telefono">
+                <md-header-cell *mdHeaderCellDef md-sort-header> TELÉFONO </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.telefono}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="accion">
+                <md-header-cell *mdHeaderCellDef> ACCIÓN </md-header-cell>
+                <md-cell *mdCellDef>
+                    <button type="button" (click)="edit()" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    <button type="button" (click)="remove()" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                </md-cell>
+            </ng-container>
+
+            <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+    </div>
+</div>

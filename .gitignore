@@ -1,0 +1,7 @@
+# Directorios ingnorados por Git
+e2e/
+node_modules/
+
+# Archivos ignorados por Git
+.editorconfig
+tslint.json
