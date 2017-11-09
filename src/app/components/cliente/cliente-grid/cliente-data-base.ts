@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Cliente } from '../cliente';
 
 import { ClienteService } from '../../../services/cliente/cliente.service';
-import { GenericService } from '../../../services/generic/generic.service';
+import { ProvinciaService } from '../../../services/provincia/provincia.service';
 
 export class ClienteDataBase {
     dataChange: BehaviorSubject<Cliente[]> = new BehaviorSubject<Cliente[]>([]);
@@ -15,15 +15,17 @@ export class ClienteDataBase {
 
     constructor(
         private service: ClienteService,
-        private genericService: GenericService
+        private provinciaService: ProvinciaService
     ) {
         this.loadCitys();
     }
 
     loadCitys(): void {
         const self = this;
-        this.genericService.list().subscribe(response => {
-            self.citys = response.json();
+        this.provinciaService.list().subscribe(provincias => {
+            self.citys = provincias.find(items => {
+                return items.id === 1;
+            }).ciudades;
             this.addCliente();
         });
     }
@@ -33,8 +35,8 @@ export class ClienteDataBase {
         const copiedData = this.data.slice();
 
         this.service.list().subscribe(items => {
-            if (items.json()) {
-                items.json().forEach(element => {
+            if (items) {
+                items.forEach(element => {
                     const cityObject = self.citys.find(res => {
                         // tslint:disable-next-line:triple-equals
                         return res.id == element.ciudad;

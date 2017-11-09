@@ -8,7 +8,6 @@ import { ModalErrorComponent } from '../modal/modal-error/modal-error.component'
 import { ModalWarningComponent } from '../modal/modal-warning/modal-warning.component';
 
 import { ClienteService } from '../../services/cliente/cliente.service';
-import { Ciudad } from '../../ciudad';
 
 @Component({
     selector: 'app-login',

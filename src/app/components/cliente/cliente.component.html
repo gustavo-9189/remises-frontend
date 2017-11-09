@@ -79,7 +79,20 @@
                         <input formControlName="codigoPostal" placeholder="Ingrese el Código Postal" class="form-control" type="number" maxlength="6" required>
                     </div>
                 </div>
-                <label class="col-md-1 control-label">Ciudad</label>
+                <label class="col-md-1 control-label">Provincia</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select formControlName="provincia" placeholder="Seleccione la Provincia" class="form-control selectpicker">
+                            <option *ngFor="let provincia of provincias" [value]="provincia.id">
+                                {{provincia.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-7 control-label">Ciudad</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>

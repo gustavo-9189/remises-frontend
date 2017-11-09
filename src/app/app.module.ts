@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,10 +38,11 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { DialogsModule } from './modules/dialogs/dialogs.module';
 
 // Servicios
+import { AuthService } from './services/auth/auth.service';
 import { AutomovilService } from './services/automovil/automovil.service';
 import { ChoferService } from './services/chofer/chofer.service';
 import { ClienteService } from './services/cliente/cliente.service';
-import { GenericService } from './services/generic/generic.service';
+import { ProvinciaService } from './services/provincia/provincia.service';
 
 @NgModule({
     imports: [
@@ -85,10 +86,15 @@ import { GenericService } from './services/generic/generic.service';
         ModalWarningComponent
     ],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthService,
+            multi: true
+        },
         AutomovilService,
         ChoferService,
         ClienteService,
-        GenericService
+        ProvinciaService
     ],
     bootstrap: [AppComponent]
 })

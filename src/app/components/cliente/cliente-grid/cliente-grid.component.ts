@@ -14,7 +14,7 @@ import { ModalComponent } from '../../modal/modal.component';
 import { ClienteDataBase } from '../../cliente/cliente-grid/cliente-data-base';
 import { ClienteDataSource } from '../../cliente/cliente-grid/cliente-data-source';
 
-import { GenericService } from '../../../services/generic/generic.service';
+import { ProvinciaService } from '../../../services/provincia/provincia.service';
 import { ClienteService } from '../../../services/cliente/cliente.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class ClienteGridComponent implements OnInit {
     constructor(
         private dialog: MdDialog,
         private service: ClienteService,
-        private genericService: GenericService,
+        private provinciaService: ProvinciaService,
         private change: ChangeDetectorRef
     ) { }
 
@@ -58,7 +58,7 @@ export class ClienteGridComponent implements OnInit {
     }
 
     refreshGrid(): void {
-        this.dataBase = new ClienteDataBase(this.service, this.genericService);
+        this.dataBase = new ClienteDataBase(this.service, this.provinciaService);
         this.dataSource = new ClienteDataSource(this.dataBase, this.sort);
         this.change.detectChanges();
 

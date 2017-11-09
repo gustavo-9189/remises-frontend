@@ -1,32 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Global } from '../../../environments/global';
-import { Automovil } from '../../../model/automovil';
+import { Constantes } from '../../../environments/constantes';
 
 @Injectable()
-export class AutomovilService extends Global {
+export class AutomovilService {
 
-    constructor(private http: Http) {
-        super();
+    private static URI = Constantes.API_URI + 'automovil';
+
+    constructor(
+        private http: HttpClient
+    ) { }
+
+    get(id): Observable<any> {
+        const URI = `${AutomovilService.URI}/${id}`;
+        return this.http.get(URI);
     }
 
-    save(automovil: Automovil) {
-        const url = this.apiURI + 'automovil';
-        const body = JSON.stringify(automovil);
-
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        // const options = new RequestOptions(headers);
-
-        const onSucces = function (response) {
-            console.log('todo joya');
-        };
-        const onError = function (error) {
-            console.error(error);
-        };
-        this.http.post(url, body, { headers: headers, withCredentials: true }).subscribe(onSucces, onError);
-        // this.http.post(url, body, options).subscribe(onSucces, onError);
+    list(): Observable<any> {
+        return this.http.get(AutomovilService.URI);
     }
+
+    save(param): Observable<any> {
+        const body = JSON.stringify(param);
+
+        if (param.id) {
+            const URI = `${AutomovilService.URI}/${param.id}`;
+            return this.http.put(URI, body);
+        } else {
+            return this.http.post(AutomovilService.URI, body);
+        }
+    }
+
+    delete(id): Observable<any> {
+        const URI = `${AutomovilService.URI}/${id}`;
+        return this.http.delete(URI);
+    }
+
 }

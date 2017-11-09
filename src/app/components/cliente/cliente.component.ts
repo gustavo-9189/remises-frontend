@@ -9,9 +9,8 @@ import { ModalErrorComponent } from '../modal/modal-error/modal-error.component'
 import { ModalWarningComponent } from '../modal/modal-warning/modal-warning.component';
 
 import { ClienteService } from '../../services/cliente/cliente.service';
-import { GenericService } from '../../services/generic/generic.service';
+import { ProvinciaService } from '../../services/provincia/provincia.service';
 
-import { Ciudad } from '../../ciudad';
 
 @Component({
     selector: 'app-cliente',
@@ -21,6 +20,7 @@ import { Ciudad } from '../../ciudad';
 export class ClienteComponent implements OnInit {
     // Formulario
     myform: FormGroup;
+
     // Campos del formulario
     id: FormControl;
     nombre: FormControl;
@@ -30,14 +30,18 @@ export class ClienteComponent implements OnInit {
     telefono: FormControl;
     direccion: FormControl;
     codigoPostal: FormControl;
+    provincia: FormControl;
     ciudad: FormControl;
+
+    // Arrays de los selects
+    provincias: [any];
     citys: [any];
 
     constructor(
         private dialog: MdDialog,
         private location: Location,
         private service: ClienteService,
-        private genericService: GenericService,
+        private provinciaService: ProvinciaService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -57,6 +61,7 @@ export class ClienteComponent implements OnInit {
         this.telefono = new FormControl();
         this.direccion = new FormControl();
         this.codigoPostal = new FormControl('', Validators.max(999999));
+        this.provincia = new FormControl();
         this.ciudad = new FormControl();
         // this.latitud = new FormControl('', Validators.required);
         // this.longitud = new FormControl('', Validators.required);
@@ -72,6 +77,7 @@ export class ClienteComponent implements OnInit {
             telefono: this.telefono,
             direccion: this.direccion,
             codigoPostal: this.codigoPostal,
+            provincia: this.provincia,
             ciudad: this.ciudad
             // latitud: this.latitud,
             // longitud: this.longitud
@@ -80,23 +86,27 @@ export class ClienteComponent implements OnInit {
 
     loadSelect(): void {
         const self = this;
-        this.genericService.list().subscribe(items => {
-            self.citys = items.json();
+        this.provinciaService.list().subscribe(items => {
+            self.provincias = items;
+            self.citys = items.find(provincias => {
+                return provincias.id === 1;
+            }).ciudades;
         });
     }
 
     setForm(id: any): void {
         const self = this;
-        this.service.get(id).subscribe(response => {
-            self.id.setValue(response.json().id);
-            self.nombre.setValue(response.json().nombre);
-            self.apellido.setValue(response.json().apellido);
-            self.dni.setValue(response.json().dni);
-            self.email.setValue(response.json().email);
-            self.telefono.setValue(response.json().telefono);
-            self.direccion.setValue(response.json().direccion);
-            self.codigoPostal.setValue(response.json().codigoPostal);
-            self.ciudad.setValue(response.json().ciudad);
+        this.service.get(id).subscribe(cliente => {
+            self.id.setValue(cliente.id);
+            self.nombre.setValue(cliente.nombre);
+            self.apellido.setValue(cliente.apellido);
+            self.dni.setValue(cliente.dni);
+            self.email.setValue(cliente.email);
+            self.telefono.setValue(cliente.telefono);
+            self.direccion.setValue(cliente.direccion);
+            self.codigoPostal.setValue(cliente.codigoPostal);
+            self.provincia.setValue(cliente.provincia);
+            self.ciudad.setValue(cliente.ciudad);
         }, error => {
             self.dialog.open(ModalErrorComponent);
         });

@@ -1,5 +1,5 @@
 <div class="container">
-    <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()" class="well form-horizontal">
+    <form novalidate [formGroup]="myform" class="well form-horizontal">
         <fieldset>
             <legend>Alta de Chofer</legend>
             <div class="form-group">
@@ -71,23 +71,35 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">Código Postal</label>
                 <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
-                        'has-danger': codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched), 
+                        'has-error': codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched), 
                         'has-success': codigoPostal.valid && (codigoPostal.dirty || codigoPostal.touched)
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input formControlName="codigoPostal" placeholder="Ingrese el Código Postal" class="form-control" type="text" maxlength="6" required>
+                        <input formControlName="codigoPostal" placeholder="Ingrese el Código Postal" class="form-control" type="number" maxlength="6" required>
                     </div>
                 </div>
+                <label class="col-md-1 control-label">Provincia</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select formControlName="provincia" placeholder="Seleccione la Provincia" class="form-control selectpicker">
+                            <option *ngFor="let provincia of provincias" [value]="provincia.id">
+                                {{provincia.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-1 control-label">Ciudad</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                        <select name="ciudad" placeholder="Seleccione la Ciudad" class="form-control selectpicker">
-                            <option>González Catán</option>
-                            <option>San Justo</option>
-                            <option>Gregorio de Laferrere</option>
-                            <option>Isidro Casanova</option>
+                        <select formControlName="ciudad" placeholder="Seleccione la Ciudad" class="form-control selectpicker">
+                            <option *ngFor="let city of citys" [value]="city.id">
+                                {{city.nombre}}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -148,7 +160,7 @@
                 </div>
                 <label class="col-md-1 control-label"></label>
                 <div class="col-md-5">
-                    <button type="submit" (click)="onSubmit()" class="btn btn-success">
+                    <button type="submit" (click)="guardar()" class="btn btn-success">
                         Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
                     </button>
                 </div>

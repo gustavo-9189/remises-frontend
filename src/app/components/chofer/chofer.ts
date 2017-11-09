@@ -4,6 +4,7 @@ export interface Chofer {
     apellido: string;
     dni: number;
     direccion: string;
+    provincia: string;
     ciudad: string;
     telefono: string;
 }

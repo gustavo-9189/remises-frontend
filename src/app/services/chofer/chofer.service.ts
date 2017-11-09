@@ -1,35 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Global } from '../../../environments/global';
+import { Constantes } from '../../../environments/constantes';
 
 @Injectable()
-export class ChoferService extends Global {
+export class ChoferService {
 
-    constructor(private http: Http) {
-        super();
+    private static URI = Constantes.API_URI + 'chofer';
+
+    constructor(
+        private http: HttpClient
+    ) { }
+
+    get(id): Observable<any> {
+        const URI = `${ChoferService.URI}/${id}`;
+        return this.http.get(URI);
     }
 
-    list(): Observable<Response> {
-        return this.http.get(`${this.apiURI}chofer`);
+    list(): Observable<any> {
+        return this.http.get(ChoferService.URI);
     }
 
-    save(param): Observable<Response> {
+    save(param): Observable<any> {
         const body = JSON.stringify(param);
 
         if (param.id) {
-            return this.http.put(
-                `${this.apiURI}chofer/${param.id}`,
-                body,
-                this.options
-            );
+            const URI = `${ChoferService.URI}/${param.id}`;
+            return this.http.put(URI, body);
         } else {
-            return this.http.post(
-                `${this.apiURI}chofer`,
-                body,
-                this.options
-            );
+            return this.http.post(ChoferService.URI, body);
         }
     }
+
+    delete(id): Observable<any> {
+        const URI = `${ChoferService.URI}/${id}`;
+        return this.http.delete(URI);
+    }
+
 }

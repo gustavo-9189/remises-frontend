@@ -3,8 +3,6 @@ import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms'
 
 import { AutomovilService } from '../../services/automovil/automovil.service';
 
-import { Automovil } from '../../../model/automovil';
-
 @Component({
     selector: 'app-automovil',
     templateUrl: './automovil.component.html',
@@ -39,8 +37,8 @@ export class AutomovilComponent implements OnInit {
     onSubmit() {
         if (this.myform.valid) {
             console.log(this.myform.value);
-            this.service.save(this.myform.value);
-            console.log('Automovil enviado al Backend!');
+            // this.service.save(this.myform.value);
+            // console.log('Automovil enviado al Backend!');
             this.myform.reset();
         }
     }
