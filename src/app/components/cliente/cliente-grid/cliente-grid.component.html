@@ -48,11 +48,11 @@
                 <md-header-cell *mdHeaderCellDef> ACCIÓN </md-header-cell>
                 <md-cell *mdCellDef="let element">
                     <button type="button" [routerLink]="['/cliente', element.id]" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
                     <button type="button" (click)="remove(element.id)" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                 </md-cell>
             </ng-container>
 

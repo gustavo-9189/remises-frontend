@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdDialog } from '@angular/material';
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ModalComponent } from '../modal/modal.component';
 import { ModalWarningComponent } from '../modal/modal-warning/modal-warning.component';
@@ -32,6 +33,7 @@ export class ChoferComponent implements OnInit {
     ciudad: FormControl;
 
     // Datos del Vehiculo
+    idAuto: FormControl;
     marca: FormControl;
     modelo: FormControl;
     patente: FormControl;
@@ -45,7 +47,9 @@ export class ChoferComponent implements OnInit {
         private dialog: MdDialog,
         private location: Location,
         private service: ChoferService,
-        private provinciaService: ProvinciaService
+        private provinciaService: ProvinciaService,
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     createFormControls(): void {
@@ -58,9 +62,11 @@ export class ChoferComponent implements OnInit {
         this.telefono = new FormControl('', Validators.required);
         this.direccion = new FormControl('', Validators.required);
         this.codigoPostal = new FormControl('', Validators.required);
+        this.provincia = new FormControl('', Validators.required);
         this.ciudad = new FormControl('', Validators.required);
 
         // Datos del Automovil
+        this.idAuto = new FormControl();
         this.marca = new FormControl('', Validators.required);
         this.modelo = new FormControl('', Validators.required);
         this.patente = new FormControl('', Validators.required);
@@ -72,6 +78,7 @@ export class ChoferComponent implements OnInit {
 
     createForm(): void {
         this.myform = new FormGroup({
+            id: this.id,
             nombre: this.nombre,
             apellido: this.apellido,
             dni: this.dni,
@@ -79,7 +86,9 @@ export class ChoferComponent implements OnInit {
             telefono: this.telefono,
             direccion: this.direccion,
             codigoPostal: this.codigoPostal,
+            provincia: this.provincia,
             ciudad: this.ciudad,
+            idAuto: this.idAuto,
             marca: this.marca,
             modelo: this.modelo,
             patente: this.patente,
@@ -102,6 +111,7 @@ export class ChoferComponent implements OnInit {
     setForm(id: any): void {
         const self = this;
         this.service.get(id).subscribe(chofer => {
+            // Setea los datos del Chofer
             self.id.setValue(chofer.id);
             self.nombre.setValue(chofer.nombre);
             self.apellido.setValue(chofer.apellido);
@@ -112,6 +122,13 @@ export class ChoferComponent implements OnInit {
             self.codigoPostal.setValue(chofer.codigoPostal);
             self.provincia.setValue(chofer.provincia);
             self.ciudad.setValue(chofer.ciudad);
+
+            // Sete los datos del Automovil
+            self.idAuto.setValue(chofer.automovil.id);
+            self.marca.setValue(chofer.automovil.marca);
+            self.modelo.setValue(chofer.automovil.modelo);
+            self.patente.setValue(chofer.automovil.patente);
+            self.anio.setValue(chofer.automovil.anio);
         }, error => {
             self.dialog.open(ModalErrorComponent);
         });
@@ -123,6 +140,14 @@ export class ChoferComponent implements OnInit {
             self.dialog.open(ModalWarningComponent);
             return;
         }
+        // Agrego el objeto Automovil
+        this.myform.value.automovil = {
+            id: this.idAuto.value,
+            marca: this.marca.value,
+            modelo: this.modelo.value,
+            anio: this.anio.value,
+            patente: this.patente.value
+        };
         this.service.save(this.myform.value).subscribe(response => {
             self.dialog.open(ModalComponent);
             self.myform.reset();
@@ -138,6 +163,11 @@ export class ChoferComponent implements OnInit {
     ngOnInit() {
         this.createFormControls();
         this.createForm();
+        this.loadSelect();
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+            this.setForm(id);
+        }
     }
 
 }

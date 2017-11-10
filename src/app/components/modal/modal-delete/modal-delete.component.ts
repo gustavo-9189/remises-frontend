@@ -44,9 +44,14 @@ export class ModalDeleteComponent {
                         this.dialog.open(ModalErrorComponent);
                     });
                 break;
-            case 'automovil':
-                break;
+
             case 'chofer':
+                this.choferService.delete(this.data.id)
+                    .subscribe(() => {
+                        this.dialog.open(ModalComponent);
+                    }, () => {
+                        this.dialog.open(ModalErrorComponent);
+                    });
                 break;
         }
         this.dialogRef.close();

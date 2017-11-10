@@ -24,8 +24,8 @@ import { ClienteService } from '../../../services/cliente/cliente.service';
 })
 export class ClienteGridComponent implements OnInit {
     displayedColumns = ['nombre', 'apellido', 'dni', 'direccion', 'ciudad', 'telefono', 'accion'];
-    dataBase: ClienteDataBase;
 
+    dataBase: ClienteDataBase;
     dataSource: ClienteDataSource | null;
 
     @ViewChild('filter')

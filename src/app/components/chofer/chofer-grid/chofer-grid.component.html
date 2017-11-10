@@ -36,7 +36,7 @@
 
             <ng-container mdColumnDef="ciudad">
                 <md-header-cell *mdHeaderCellDef md-sort-header> CIUDAD </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.ciudad}} </md-cell>
+                <md-cell *mdCellDef="let element"> {{element.ciudadText}} </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="telefono">
@@ -46,13 +46,13 @@
 
             <ng-container mdColumnDef="accion">
                 <md-header-cell *mdHeaderCellDef> ACCIÓN </md-header-cell>
-                <md-cell *mdCellDef>
-                    <button type="button" (click)="edit()" class="btn btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
-                    <button type="button" (click)="remove()" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
+                <md-cell *mdCellDef="let element">
+                    <button type="button" [routerLink]="['/chofer', element.id]" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" (click)="remove(element.id)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                 </md-cell>
             </ng-container>
 
