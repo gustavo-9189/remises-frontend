@@ -43,6 +43,8 @@ import { AutomovilService } from './services/automovil/automovil.service';
 import { ChoferService } from './services/chofer/chofer.service';
 import { ClienteService } from './services/cliente/cliente.service';
 import { ProvinciaService } from './services/provincia/provincia.service';
+import { ViajeService } from './services/viaje/viaje.service';
+import { EstadoService } from './services/estado/estado.service';
 
 @NgModule({
     imports: [
@@ -94,7 +96,9 @@ import { ProvinciaService } from './services/provincia/provincia.service';
         AutomovilService,
         ChoferService,
         ClienteService,
-        ProvinciaService
+        ProvinciaService,
+        ViajeService,
+        EstadoService
     ],
     bootstrap: [AppComponent]
 })

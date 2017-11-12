@@ -61,8 +61,8 @@ export class ClienteComponent implements OnInit {
         this.telefono = new FormControl();
         this.direccion = new FormControl();
         this.codigoPostal = new FormControl('', Validators.max(999999));
-        this.provincia = new FormControl();
-        this.ciudad = new FormControl();
+        this.provincia = new FormControl('', Validators.required);
+        this.ciudad = new FormControl('', Validators.required);
         // this.latitud = new FormControl('', Validators.required);
         // this.longitud = new FormControl('', Validators.required);
     }

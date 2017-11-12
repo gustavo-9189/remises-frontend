@@ -78,6 +78,7 @@ export class ChoferComponent implements OnInit {
 
     createForm(): void {
         this.myform = new FormGroup({
+            // Datos del Chofer
             id: this.id,
             nombre: this.nombre,
             apellido: this.apellido,
@@ -88,6 +89,8 @@ export class ChoferComponent implements OnInit {
             codigoPostal: this.codigoPostal,
             provincia: this.provincia,
             ciudad: this.ciudad,
+
+            // Datos del Automovil
             idAuto: this.idAuto,
             marca: this.marca,
             modelo: this.modelo,
