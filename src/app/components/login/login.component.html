@@ -1,43 +1,37 @@
 <div class="container">
-    <form novalidate [formGroup]="myform" class="well form-vertical">
+    <form novalidate [formGroup]="myform" class="well form-horizontal">
         <fieldset>
             <legend>Iniciar Sesion</legend>
+            <div class="form-group inputGroupContainer" [ngClass]="{
+                     'has-error': usuario.invalid && (usuario.dirty || usuario.touched),
+                     'has-success': usuario.valid && (usuario.dirty || usuario.touched) 
+                }">
+                <label class="col-md-4 control-label">Usuario</label>
+                <div class="input-group col-md-4">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <input formControlName="usuario" placeholder="Ingrese el Usuario / Correo Electronico" class="form-control" type="text" maxlength="50"
+                        required>
+                </div>
+            </div>
+            <div class="form-group inputGroupContainer" [ngClass]="{ 
+                    'has-error': clave.invalid && (clave.dirty || clave.touched), 
+                    'has-success': clave.valid && (clave.dirty || clave.touched) 
+                }">
+                <label class="col-md-4 control-label">Contraseña</label>
+                <div class="input-group col-md-4">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input formControlName="clave" placeholder="Ingrese la Contraseña" class="form-control" type="password" maxlength="50" required>
+                </div>
+            </div>
+            <br>
             <div class="form-group">
-                <label class="col-md-2 control-label">Usuario</label>
-                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
-                        'has-error': user.invalid && (user.dirty || user.touched), 
-                        'has-success': user.valid && (user.dirty || user.touched)
-                    }">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input formControlName="user" placeholder="Ingrese el Usuario / Correo Electronico" class="form-control" type="text" maxlength="50"
-                            required>
-                    </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-1">
+                    <button type="button" (click)="enviar()" class="btn btn-success">
+                    Enviar <span class="glyphicon glyphicon-send"></span>
+                </button>
                 </div>
             </div>
         </fieldset>
-        <fieldset>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Contraseña</label>
-                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
-                        'has-error': pass.invalid && (pass.dirty || pass.touched), 
-                        'has-success': pass.valid && (pass.dirty || pass.touched)
-                    }">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input formControlName="pass" placeholder="Ingrese la Contraseña" class="form-control" type="text" maxlength="50" required>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <br>
-        <div class="form-group">
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4">
-                <button type="button" (click)="enviar()" class="btn btn-success">
-                        Enviar <span class="glyphicon glyphicon-send"></span>
-                    </button>
-            </div>
-        </div>
     </form>
 </div>

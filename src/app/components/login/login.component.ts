@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdDialog } from '@angular/material';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
-import { ModalComponent } from '../modal/modal.component';
 import { ModalErrorComponent } from '../modal/modal-error/modal-error.component';
 import { ModalWarningComponent } from '../modal/modal-warning/modal-warning.component';
 
-import { ClienteService } from '../../services/cliente/cliente.service';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
     selector: 'app-login',
@@ -19,47 +18,37 @@ export class LoginComponent implements OnInit {
     myform: FormGroup;
 
     // Campos del formulario
-    user: FormControl;
-    pass: FormControl;
+    usuario: FormControl;
+    clave: FormControl;
 
     constructor(
         private dialog: MdDialog,
-        private location: Location,
-        private service: ClienteService
+        private router: Router,
+        private service: LoginService
     ) { }
 
-    createFormControls() {
-        this.user = new FormControl('', Validators.required);
-        this.pass = new FormControl('', Validators.required);
+    createFormControls(): void {
+        this.usuario = new FormControl('', [Validators.required, Validators.email]);
+        this.clave = new FormControl('', [Validators.required, Validators.minLength(6)]);
     }
 
-    createForm() {
+    createForm(): void {
         this.myform = new FormGroup({
-            user: this.user,
-            pass: this.pass
+            usuario: this.usuario,
+            clave: this.clave
         });
     }
 
-    enviar() {
-        const self = this;
+    enviar(): void {
         if (!this.myform.valid) {
-            self.dialog.open(ModalWarningComponent, {
-                width: '350px'
-            });
+            this.dialog.open(ModalWarningComponent);
             return;
         }
-        const onSucces = function () {
-            self.dialog.open(ModalComponent, {
-                width: '350px'
-            });
-            self.myform.reset();
-        };
-        const onError = function () {
-            self.dialog.open(ModalErrorComponent, {
-                width: '350px'
-            });
-        };
-        this.service.save(this.myform.value).subscribe(onSucces, onError);
+        this.service.logear(this.myform.value).subscribe(response => {
+            this.router.navigate(['/home']);
+        }, error => {
+            this.dialog.open(ModalWarningComponent);
+        });
     }
 
     ngOnInit() {

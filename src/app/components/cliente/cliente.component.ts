@@ -50,16 +50,10 @@ export class ClienteComponent implements OnInit {
         this.id = new FormControl();
         this.nombre = new FormControl('', Validators.required);
         this.apellido = new FormControl('', Validators.required);
-        this.dni = new FormControl(
-            '', [
-                Validators.required,
-                Validators.min(5000000),
-                Validators.max(100000000)
-            ]
-        );
+        this.dni = new FormControl('', [Validators.required, Validators.min(5000000), Validators.max(100000000)]);
         this.email = new FormControl('', Validators.email);
         this.telefono = new FormControl();
-        this.direccion = new FormControl();
+        this.direccion = new FormControl('', Validators.required);
         this.codigoPostal = new FormControl('', Validators.max(999999));
         this.provincia = new FormControl('', Validators.required);
         this.ciudad = new FormControl('', Validators.required);

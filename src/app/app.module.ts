@@ -45,6 +45,8 @@ import { ClienteService } from './services/cliente/cliente.service';
 import { ProvinciaService } from './services/provincia/provincia.service';
 import { ViajeService } from './services/viaje/viaje.service';
 import { EstadoService } from './services/estado/estado.service';
+import { LoginService } from './services/login/login.service';
+import { RegistrarseService } from './services/registrarse/registrarse.service';
 
 @NgModule({
     imports: [
@@ -98,7 +100,9 @@ import { EstadoService } from './services/estado/estado.service';
         ClienteService,
         ProvinciaService,
         ViajeService,
-        EstadoService
+        EstadoService,
+        LoginService,
+        RegistrarseService
     ],
     bootstrap: [AppComponent]
 })

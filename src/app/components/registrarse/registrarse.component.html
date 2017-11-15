@@ -1,3 +1,140 @@
-<p>
-  registrarse works!
-</p>
+<div class="container">
+    <form novalidate [formGroup]="myform" class="well form-horizontal">
+        <fieldset>
+            <legend>Registrarse</legend>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': nombre.invalid && (nombre.dirty || nombre.touched), 
+                        'has-success': nombre.valid && (nombre.dirty || nombre.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input formControlName="nombre" placeholder="Ingrese el Nombre" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Apellido</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': apellido.invalid && (apellido.dirty || apellido.touched), 
+                        'has-success': apellido.valid && (apellido.dirty || apellido.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input formControlName="apellido" placeholder="Ingrese el Apellido" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">D.N.I.</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': dni.invalid && (dni.dirty || dni.touched), 
+                        'has-success': dni.valid && (dni.dirty || dni.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <input formControlName="dni" placeholder="Ingrese el D.N.I." class="form-control" type="number" maxlength="8" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Teléfono</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': telefono.invalid && (telefono.dirty || telefono.touched), 
+                        'has-success': telefono.valid && (telefono.dirty || telefono.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input formControlName="telefono" placeholder="(011) 555-1212" class="form-control" type="tel" maxlength="20" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Correo Electrónico</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': email.invalid && (email.dirty || email.touched), 
+                        'has-success': email.valid && (email.dirty || email.touched) 
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input formControlName="email" placeholder="Ingrese el correo electrónico" class="form-control" type="email" maxlength="50" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Dirección</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': direccion.invalid && (direccion.dirty || direccion.touched), 
+                        'has-success': direccion.valid && (direccion.dirty || direccion.touched) 
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input formControlName="direccion" placeholder="Ingrese la Dirección" class="form-control" type="text" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Código Postal</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched), 
+                        'has-success': codigoPostal.valid && (codigoPostal.dirty || codigoPostal.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input formControlName="codigoPostal" placeholder="Ingrese el Código Postal" class="form-control" type="number" maxlength="6" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Provincia</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select formControlName="provincia" placeholder="Seleccione la Provincia" class="form-control selectpicker">
+                            <option *ngFor="let provincia of provincias" [value]="provincia.id">
+                                {{provincia.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-7 control-label">Ciudad</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select formControlName="ciudad" placeholder="Seleccione la Ciudad" class="form-control selectpicker">
+                            <option *ngFor="let city of citys" [value]="city.id">
+                                {{city.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Contraseña</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': clave.invalid && (clave.dirty || clave.touched), 
+                        'has-success': clave.valid && (clave.dirty || clave.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input formControlName="clave" placeholder="Ingrese la Contraseña" class="form-control" type="password" maxlength="50" required>
+                    </div>
+                </div>
+                <label class="col-md-1 control-label">Confirmar Contraseña</label>
+                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                        'has-error': confirmaClave.invalid && (confirmaClave.dirty || confirmaClave.touched), 
+                        'has-success': confirmaClave.valid && (confirmaClave.dirty || confirmaClave.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input formControlName="confirmaClave" placeholder="Confime la Contraseña" class="form-control" type="password" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-5">
+                    <button type="button" (click)="guardar()" class="btn btn-success">
+                        Enviar <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
