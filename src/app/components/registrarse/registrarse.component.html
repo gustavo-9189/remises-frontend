@@ -115,7 +115,9 @@
                         <input formControlName="clave" placeholder="Ingrese la Contraseña" class="form-control" type="password" maxlength="50" required>
                     </div>
                 </div>
-                <label class="col-md-1 control-label">Confirmar Contraseña</label>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Confirmar Contraseña</label>
                 <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
                         'has-error': confirmaClave.invalid && (confirmaClave.dirty || confirmaClave.touched), 
                         'has-success': confirmaClave.valid && (confirmaClave.dirty || confirmaClave.touched)

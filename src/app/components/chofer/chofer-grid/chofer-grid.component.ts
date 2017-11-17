@@ -44,10 +44,6 @@ export class ChoferGridComponent implements OnInit {
         private change: ChangeDetectorRef
     ) { }
 
-    edit(): void {
-        alert('EDIT');
-    }
-
     remove(id): void {
         const self = this;
         const parameters = {

@@ -48,15 +48,15 @@ export class ClienteComponent implements OnInit {
 
     createFormControls(): void {
         this.id = new FormControl();
-        this.nombre = new FormControl('', Validators.required);
-        this.apellido = new FormControl('', Validators.required);
-        this.dni = new FormControl('', [Validators.required, Validators.min(5000000), Validators.max(100000000)]);
+        this.nombre = new FormControl();
+        this.apellido = new FormControl();
+        this.dni = new FormControl('', [Validators.min(5000000), Validators.max(100000000)]);
         this.email = new FormControl('', Validators.email);
         this.telefono = new FormControl();
-        this.direccion = new FormControl('', Validators.required);
+        this.direccion = new FormControl();
         this.codigoPostal = new FormControl('', Validators.max(999999));
-        this.provincia = new FormControl('', Validators.required);
-        this.ciudad = new FormControl('', Validators.required);
+        this.provincia = new FormControl(1, Validators.required);        // por defecto BUENOS AIRES
+        this.ciudad = new FormControl(329, Validators.required);         // por defecto GONZALEZ CATAN
         // this.latitud = new FormControl('', Validators.required);
         // this.longitud = new FormControl('', Validators.required);
     }

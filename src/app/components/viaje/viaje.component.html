@@ -14,13 +14,17 @@
                     </div>
                 </div>
                 <label class="col-md-1 control-label">Chofer</label>
-                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                <div class="col-md-4 selectContainer" [ngClass]="{ 
                         'has-error': chofer.invalid && (chofer.dirty || chofer.touched), 
                         'has-success': chofer.valid && (chofer.dirty || chofer.touched)
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input formControlName="chofer" placeholder="Seleccione el Chofer" class="form-control" type="text" maxlength="50" required>
+                        <select formControlName="chofer" placeholder="Seleccione el Chofer" class="form-control selectpicker">
+                            <option *ngFor="let chofer of choferes" [value]="chofer.id">
+                                {{chofer.nombre + ' ' + chofer.apellido}}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -64,7 +68,7 @@
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                        <input formControlName="hora" placeholder="Ingrese la Hora" class="form-control" type="time" required>
+                        <input formControlName="hora" placeholder="Ingrese la Hora" class="form-control" type="time">
                     </div>
                 </div>
             </div>
@@ -76,24 +80,28 @@
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                        <input formControlName="precio" placeholder="Ingrese el Precio" class="form-control" type="number" maxlength="11" required>
+                        <input formControlName="precio" placeholder="Ingrese el Precio" class="form-control" type="number" required>
                     </div>
                 </div>
                 <label class="col-md-1 control-label">Estado</label>
-                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                <div class="col-md-4 selectContainer" [ngClass]="{ 
                         'has-error': estado.invalid && (estado.dirty || estado.touched), 
                         'has-success': estado.valid && (estado.dirty || estado.touched) 
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
-                        <input formControlName="estado" placeholder="Seleccione el Estado" class="form-control" type="text" required>
+                        <select formControlName="estado" placeholder="Seleccione el Estado" class="form-control selectpicker">
+                            <option *ngFor="let estado of estados" [value]="estado.id">
+                                {{estado.nombre}}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-5">
+                <label class="col-md-5 control-label"></label>
+                <div class="col-md-6">
                     <button type="button" (click)="guardar()" class="btn btn-success">
                         Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
                     </button>

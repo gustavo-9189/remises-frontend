@@ -51,18 +51,22 @@ export class ViajeComponent implements OnInit {
 
     createFormControls(): void {
         this.id = new FormControl();
-        this.chofer = new FormControl('', Validators.required);
-        this.cliente = new FormControl('', Validators.required);
-        this.precio = new FormControl('', Validators.required);
-        this.origen = new FormControl('', Validators.required);
+        this.chofer = new FormControl();
+        this.cliente = new FormControl();
+        this.precio = new FormControl('', [Validators.min(0), Validators.max(99999999999999)]);
+        this.origen = new FormControl();
         // this.latitudOrigen = new FormControl();
         // this.longitudOrigen = new FormControl();
-        this.destino = new FormControl('', Validators.required);
+        this.destino = new FormControl();
         // this.latitudDestino = new FormControl();
         // this.latitudDestino = new FormControl();
-        this.fecha = new FormControl('', Validators.required);
-        this.hora = new FormControl('', Validators.required);
-        this.estado = new FormControl('', Validators.required);
+
+        const DATE = new Date();
+        const TIME = DATE.getHours() + ':' + DATE.getMinutes();
+
+        this.fecha = new FormControl(DATE);    // por defecto la fecha actual
+        this.hora = new FormControl(TIME);     // por defecto la hora actual
+        this.estado = new FormControl(2);
     }
 
     createForm(): void {

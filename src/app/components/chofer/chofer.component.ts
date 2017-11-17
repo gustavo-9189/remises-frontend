@@ -55,22 +55,25 @@ export class ChoferComponent implements OnInit {
     createFormControls(): void {
         // Datos del Chofer
         this.id = new FormControl();
-        this.nombre = new FormControl('', Validators.required);
-        this.apellido = new FormControl('', Validators.required);
-        this.dni = new FormControl('', Validators.required);
-        this.email = new FormControl('', Validators.required);
-        this.telefono = new FormControl('', Validators.required);
-        this.direccion = new FormControl('', Validators.required);
-        this.codigoPostal = new FormControl('', Validators.required);
-        this.provincia = new FormControl('', Validators.required);
-        this.ciudad = new FormControl('', Validators.required);
+        this.nombre = new FormControl();
+        this.apellido = new FormControl();
+        this.dni = new FormControl('', [Validators.min(5000000), Validators.max(100000000)]);
+        this.email = new FormControl('', Validators.email);
+        this.telefono = new FormControl();
+        this.direccion = new FormControl();
+        this.codigoPostal = new FormControl('', Validators.max(999999));
+        this.provincia = new FormControl(1, Validators.required);         // por defecto BUENOS AIRES
+        this.ciudad = new FormControl(329, Validators.required);          // por defecto GONZALEZ CATAN
+
+        const YEAR_MAX = (new Date()).getFullYear();
+        const YEAR_MIN = YEAR_MAX - 60;
 
         // Datos del Automovil
         this.idAuto = new FormControl();
-        this.marca = new FormControl('', Validators.required);
-        this.modelo = new FormControl('', Validators.required);
-        this.patente = new FormControl('', Validators.required);
-        this.anio = new FormControl('', Validators.required);
+        this.marca = new FormControl();
+        this.modelo = new FormControl();
+        this.patente = new FormControl();
+        this.anio = new FormControl('', [Validators.min(YEAR_MIN), Validators.max(YEAR_MAX)]);
 
         // this.latitud = new FormControl('', Validators.required);
         // this.longitud = new FormControl('', Validators.required);
