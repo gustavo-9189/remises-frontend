@@ -5,8 +5,8 @@ import { ModalComponent } from '../../modal/modal.component';
 import { ModalErrorComponent } from '../../modal/modal-error/modal-error.component';
 
 import { ClienteService } from '../../../services/cliente/cliente.service';
-import { AutomovilService } from '../../../services/automovil/automovil.service';
 import { ChoferService } from '../../../services/chofer/chofer.service';
+import { ViajeService } from '../../../services/viaje/viaje.service';
 
 @Component({
     selector: 'app-modal-delete',
@@ -18,7 +18,7 @@ export class ModalDeleteComponent {
     constructor(
         private clienteService: ClienteService,
         private choferService: ChoferService,
-        private automovilService: AutomovilService,
+        private viajeService: ViajeService,
         private dialog: MdDialog,
         public dialogRef: MdDialogRef<ModalDeleteComponent>,
 
@@ -47,6 +47,15 @@ export class ModalDeleteComponent {
 
             case 'chofer':
                 this.choferService.delete(this.data.id)
+                    .subscribe(() => {
+                        this.dialog.open(ModalComponent);
+                    }, () => {
+                        this.dialog.open(ModalErrorComponent);
+                    });
+                break;
+
+            case 'viaje':
+                this.viajeService.delete(this.data.id)
                     .subscribe(() => {
                         this.dialog.open(ModalComponent);
                     }, () => {

@@ -1,0 +1,63 @@
+<div class="container">
+    <legend>Viajes</legend>
+    <div class="grid-container mat-elevation-z8">
+        <div class="grid-header">
+            <div class="col-md-12">
+                <md-form-field class="buscador" floatPlaceholder="never">
+                    <input mdInput #filter placeholder="Buscador  (filtrar por ID, Cliente, Chofer, etc...)">
+                </md-form-field>
+            </div>
+            <div class="col-md-3">
+                <button type="button" [routerLink]="['/viaje']" class="btn btn-success">
+                        Nuevo Viaje <span class="glyphicon glyphicon-road"></span>
+                    </button>
+            </div>
+        </div>
+        <md-table #table [dataSource]="dataSource" mdSort>
+            <ng-container mdColumnDef="cliente">
+                <md-header-cell *mdHeaderCellDef md-sort-header> CLIENTE </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.clienteText}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="chofer">
+                <md-header-cell *mdHeaderCellDef md-sort-header> CHOFER </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.choferText}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="origen">
+                <md-header-cell *mdHeaderCellDef md-sort-header> ORIGEN </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.origen}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="destino">
+                <md-header-cell *mdHeaderCellDef md-sort-header> DESTINO </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.destino}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="estado">
+                <md-header-cell *mdHeaderCellDef md-sort-header> ESTADO </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.estado}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="precio">
+                <md-header-cell *mdHeaderCellDef md-sort-header> PRECIO </md-header-cell>
+                <md-cell *mdCellDef="let element"> {{element.precio}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="accion">
+                <md-header-cell *mdHeaderCellDef> ACCIÓN </md-header-cell>
+                <md-cell *mdCellDef="let element">
+                    <button type="button" [routerLink]="['/viaje', element.id]" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button type="button" (click)="remove(element.id)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </md-cell>
+            </ng-container>
+
+            <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+    </div>
+</div>

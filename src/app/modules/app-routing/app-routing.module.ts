@@ -11,6 +11,7 @@ import { ChoferComponent } from '../../components/chofer/chofer.component';
 import { ChoferGridComponent } from '../../components/chofer/chofer-grid/chofer-grid.component';
 import { AutomovilComponent } from '../../components/automovil/automovil.component';
 import { ViajeComponent } from '../../components/viaje/viaje.component';
+import { ViajeGridComponent } from '../../components/viaje/viaje-grid/viaje-grid.component';
 import { ReporteComponent } from '../../components/reporte/reporte.component';
 import { GeolocalizacionComponent } from '../../components/geolocalizacion/geolocalizacion.component';
 import { RegistrarseComponent } from '../../components/registrarse/registrarse.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'reporte', component: ReporteComponent },
     { path: 'viaje', component: ViajeComponent },
     { path: 'viaje/:id', component: ViajeComponent },
+    { path: 'viajeList', component: ViajeGridComponent },
     { path: 'maps', component: ModalMapsComponent },
     { path: 'geoloc', component: GeolocalizacionComponent },
     { path: 'registrarse', component: RegistrarseComponent },

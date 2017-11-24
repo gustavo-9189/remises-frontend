@@ -1,0 +1,51 @@
+/* Structure */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+  
+.grid-header {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    font-size: 20px;
+    background-color: white;
+}
+  
+.grid-header {
+    min-height: 64px;
+    display: flex;
+    align-items: baseline;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+    background-color: white;
+}
+  
+.mat-table {
+    overflow: auto;
+    max-height: 435px;
+}
+
+.buscador {
+    width: 94%;
+    background-color: white;
+}
+
+.mat-form-field {
+    font-size: 18px;
+    flex-grow: 2;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.mat-header-cell .mat-sort-header-sorted {
+    color: black;
+}
+
+md-header-cell {
+    font-weight: bold;
+    color: black;
+}

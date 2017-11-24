@@ -26,7 +26,7 @@ export class ChoferDataBase {
             self.citys = provincias.find(items => {
                 return items.id === 1;
             }).ciudades;
-            this.addChofer();
+            self.addChofer();
         });
     }
 
@@ -43,7 +43,7 @@ export class ChoferDataBase {
                     });
                     element.ciudadText = cityObject.nombre;
                     copiedData.push(element);
-                    this.dataChange.next(copiedData);
+                    self.dataChange.next(copiedData);
                 });
             }
         });

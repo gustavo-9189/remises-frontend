@@ -29,6 +29,7 @@ import { GeolocalizacionComponent } from './components/geolocalizacion/geolocali
 import { ModalWarningComponent } from './components/modal/modal-warning/modal-warning.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrarseComponent } from './components/registrarse/registrarse.component';
+import { ViajeGridComponent } from './components/viaje/viaje-grid/viaje-grid.component';
 
 // Directivas
 import { GeolocalizacionDirective } from './directives/geolocalizacion.directive';
@@ -47,6 +48,7 @@ import { ViajeService } from './services/viaje/viaje.service';
 import { EstadoService } from './services/estado/estado.service';
 import { LoginService } from './services/login/login.service';
 import { RegistrarseService } from './services/registrarse/registrarse.service';
+
 
 @NgModule({
     imports: [
@@ -81,7 +83,8 @@ import { RegistrarseService } from './services/registrarse/registrarse.service';
         GeolocalizacionComponent,
         LoginComponent,
         RegistrarseComponent,
-        GeolocalizacionDirective
+        GeolocalizacionDirective,
+        ViajeGridComponent
     ],
     entryComponents: [
         ModalComponent,

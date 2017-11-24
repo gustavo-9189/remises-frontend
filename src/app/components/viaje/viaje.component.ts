@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MdDialog } from '@angular/material';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ModalComponent } from '../modal/modal.component';
@@ -46,7 +47,8 @@ export class ViajeComponent implements OnInit {
         private choferService: ChoferService,
         private estadoService: EstadoService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private location: Location
     ) { }
 
     createFormControls(): void {
@@ -64,8 +66,8 @@ export class ViajeComponent implements OnInit {
         const DATE = new Date();
         const TIME = DATE.getHours() + ':' + DATE.getMinutes();
 
-        this.fecha = new FormControl(DATE);    // por defecto la fecha actual
-        this.hora = new FormControl(TIME);     // por defecto la hora actual
+        this.fecha = new FormControl(DATE);               // por defecto la fecha actual
+        this.hora = new FormControl(TIME);                // por defecto la hora actual
         this.estado = new FormControl(2);
     }
 
@@ -80,6 +82,23 @@ export class ViajeComponent implements OnInit {
             fecha: this.fecha,
             hora: this.hora,
             estado: this.estado
+        });
+    }
+
+    setForm(id: any): void {
+        const self = this;
+        this.service.get(id).subscribe(viaje => {
+            self.id.setValue(viaje.id);
+            self.chofer.setValue(viaje.chofer);
+            self.cliente.setValue(viaje.cliente);
+            self.precio.setValue(viaje.precio);
+            self.origen.setValue(viaje.origen);
+            self.destino.setValue(viaje.destino);
+            self.fecha.setValue(viaje.fecha);
+            self.hora.setValue(viaje.hora);
+            self.estado.setValue(viaje.estado);
+        }, error => {
+            self.dialog.open(ModalErrorComponent);
         });
     }
 
@@ -107,10 +126,18 @@ export class ViajeComponent implements OnInit {
         });
     }
 
+    back(): void {
+        this.location.back();
+    }
+
     ngOnInit(): void {
         this.createFormControls();
         this.createForm();
         this.loadSelect();
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+            this.setForm(id);
+        }
     }
 
 }
