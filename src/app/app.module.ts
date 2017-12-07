@@ -48,6 +48,7 @@ import { ViajeService } from './services/viaje/viaje.service';
 import { EstadoService } from './services/estado/estado.service';
 import { LoginService } from './services/login/login.service';
 import { RegistrarseService } from './services/registrarse/registrarse.service';
+import { ReporteService } from './services/reporte/reporte.service';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { RegistrarseService } from './services/registrarse/registrarse.service';
         ViajeService,
         EstadoService,
         LoginService,
-        RegistrarseService
+        RegistrarseService,
+        ReporteService
     ],
     bootstrap: [AppComponent]
 })

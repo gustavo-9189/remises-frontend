@@ -25,22 +25,22 @@ export class GeolocalizacionComponent implements OnInit {
     }
 
     mapClicked($event: any) {
-        if (this.counterMarker < 3) {
-            this.markers.push({
-                lat: $event.coords.lat,
-                lng: $event.coords.lng,
-                draggable: true,
-                label: (this.counterMarker === 1) ? 'O' : 'D'
-            });
-            this.counterMarker++;
-        }
+        // if (this.counterMarker < 3) {
+        //     this.markers.push({
+        //         lat: $event.coords.lat,
+        //         lng: $event.coords.lng,
+        //         draggable: true,
+        //         label: (this.counterMarker === 1) ? 'O' : 'D'
+        //     });
+        //     this.counterMarker++;
+        // }
     }
 
     mapRightClick($event: any) {
-        if (this.counterMarker > 1) {
-            this.markers.pop();
-            this.counterMarker--;
-        }
+        // if (this.counterMarker > 1) {
+        //     this.markers.pop();
+        //     this.counterMarker--;
+        // }
     }
 
     markerDragEnd(m: Marker, $event: MouseEvent) {

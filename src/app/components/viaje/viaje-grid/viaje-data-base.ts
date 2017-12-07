@@ -1,17 +1,14 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Viaje } from '../viaje';
-import { Cliente } from '../../cliente/cliente';
-import { Chofer } from '../../chofer/chofer';
 
 import { ViajeService } from '../../../services/viaje/viaje.service';
 import { ChoferService } from '../../../services/chofer/chofer.service';
 import { ClienteService } from '../../../services/cliente/cliente.service';
+import { EstadoService } from '../../../services/estado/estado.service';
 
 export class ViajeDataBase {
     dataChange: BehaviorSubject<Viaje[]> = new BehaviorSubject<Viaje[]>([]);
-    clientes: [Cliente];
-    choferes: [Chofer];
 
     get data(): Viaje[] {
         return this.dataChange.value;
@@ -20,7 +17,8 @@ export class ViajeDataBase {
     constructor(
         private service: ViajeService,
         private clienteService: ClienteService,
-        private choferService: ChoferService
+        private choferService: ChoferService,
+        private estadoService: EstadoService
     ) {
         this.addViaje();
     }
@@ -36,8 +34,11 @@ export class ViajeDataBase {
                         element.clienteText = cliente.apellido;
                         self.choferService.get(element.chofer).subscribe(chofer => {
                             element.choferText = chofer.apellido;
-                            copiedData.push(element);
-                            self.dataChange.next(copiedData);
+                            self.estadoService.get(element.estado).subscribe(estado => {
+                                element.estadoText = estado.nombre;
+                                copiedData.push(element);
+                                self.dataChange.next(copiedData);
+                            });
                         });
                     });
                 });

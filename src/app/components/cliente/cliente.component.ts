@@ -11,6 +11,7 @@ import { ModalWarningComponent } from '../modal/modal-warning/modal-warning.comp
 import { ClienteService } from '../../services/cliente/cliente.service';
 import { ProvinciaService } from '../../services/provincia/provincia.service';
 
+import { Constantes } from '../../../environments/constantes';
 
 @Component({
     selector: 'app-cliente',
@@ -48,13 +49,13 @@ export class ClienteComponent implements OnInit {
 
     createFormControls(): void {
         this.id = new FormControl();
-        this.nombre = new FormControl();
-        this.apellido = new FormControl();
-        this.dni = new FormControl('', [Validators.min(5000000), Validators.max(100000000)]);
+        this.nombre = new FormControl('', Validators.pattern(Constantes.NAME_PATTERN));
+        this.apellido = new FormControl('', Validators.pattern(Constantes.NAME_PATTERN));
+        this.dni = new FormControl('', [Validators.min(5000000), Validators.pattern(Constantes.DNI_PATTERN)]);
         this.email = new FormControl('', Validators.email);
-        this.telefono = new FormControl();
+        this.telefono = new FormControl('', Validators.pattern(Constantes.TELEPHONE_PATTERN));
         this.direccion = new FormControl();
-        this.codigoPostal = new FormControl('', Validators.max(999999));
+        this.codigoPostal = new FormControl('', Validators.pattern(Constantes.CP_PATTERN));
         this.provincia = new FormControl(1, Validators.required);        // por defecto BUENOS AIRES
         this.ciudad = new FormControl(329, Validators.required);         // por defecto GONZALEZ CATAN
         // this.latitud = new FormControl('', Validators.required);
@@ -114,7 +115,7 @@ export class ClienteComponent implements OnInit {
         }
         this.service.save(this.myform.value).subscribe(response => {
             self.dialog.open(ModalComponent);
-            self.myform.reset();
+            // self.myform.reset();
         }, error => {
             self.dialog.open(ModalErrorComponent);
         });

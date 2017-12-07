@@ -1,3 +1,32 @@
-<p>
-  reporte works!
-</p>
+<div class="container">
+    <form novalidate [formGroup]="myform" class="well form-horizontal">
+        <fieldset>
+            <legend>Saldos</legend>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Chofer</label>
+                <div class="col-md-4 selectContainer" [ngClass]="{ 
+                        'has-error': chofer.invalid && (chofer.dirty || chofer.touched), 
+                        'has-success': chofer.valid && (chofer.dirty || chofer.touched)
+                    }">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <select formControlName="chofer" placeholder="Seleccione el Chofer" class="form-control selectpicker">
+                            <option *ngFor="let chofer of choferes" [value]="chofer.id">
+                                {{chofer.nombre + ' ' + chofer.apellido}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label class="col-md-1 control-label"></label>
+                <div class="col-md-5">
+                    <button type="button" (click)="download()" class="btn btn-success">
+                        Generar Excel <span class="glyphicon glyphicon-floppy-file"></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

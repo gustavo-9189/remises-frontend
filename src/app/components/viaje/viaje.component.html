@@ -4,13 +4,17 @@
             <legend>Alta de Viaje</legend>
             <div class="form-group">
                 <label class="col-md-2 control-label">Cliente</label>
-                <div class="col-md-4 inputGroupContainer" [ngClass]="{ 
+                <div class="col-md-4 selectContainer" [ngClass]="{ 
                         'has-error': cliente.invalid && (cliente.dirty || cliente.touched), 
                         'has-success': cliente.valid && (cliente.dirty || cliente.touched)
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input formControlName="cliente" placeholder="Ingrese el Cliente" class="form-control" type="text" maxlength="50" required>
+                        <select formControlName="cliente" placeholder="Seleccione el Cliente" class="form-control selectpicker">
+                            <option *ngFor="let cliente of clientes" [value]="cliente.id">
+                                {{cliente.nombre + ' ' + cliente.apellido + ' - ' + cliente.dni}}
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <label class="col-md-1 control-label">Chofer</label>
@@ -80,7 +84,7 @@
                     }">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                        <input formControlName="precio" placeholder="Ingrese el Precio" class="form-control" type="number" required>
+                        <input formControlName="precio" placeholder="Ingrese el Precio" class="form-control" type="text" maxlength="14" required>
                     </div>
                 </div>
                 <label class="col-md-1 control-label">Estado</label>

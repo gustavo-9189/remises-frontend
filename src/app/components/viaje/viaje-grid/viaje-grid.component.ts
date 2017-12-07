@@ -17,6 +17,7 @@ import { ViajeDataSource } from './viaje-data-source';
 import { ViajeService } from '../../../services/viaje/viaje.service';
 import { ClienteService } from '../../../services/cliente/cliente.service';
 import { ChoferService } from '../../../services/chofer/chofer.service';
+import { EstadoService } from '../../../services/estado/estado.service';
 
 @Component({
     selector: 'app-viaje-grid',
@@ -30,6 +31,8 @@ export class ViajeGridComponent implements OnInit {
     dataBase: ViajeDataBase;
     dataSource: ViajeDataSource | null;
 
+    colorEstado: string;
+
     @ViewChild('filter')
     filter: ElementRef;
 
@@ -41,6 +44,7 @@ export class ViajeGridComponent implements OnInit {
         private service: ViajeService,
         private clienteService: ClienteService,
         private choferService: ChoferService,
+        private estadoService: EstadoService,
         private change: ChangeDetectorRef
     ) { }
 
@@ -61,7 +65,7 @@ export class ViajeGridComponent implements OnInit {
     }
 
     refreshGrid(): void {
-        this.dataBase = new ViajeDataBase(this.service, this.clienteService, this.choferService);
+        this.dataBase = new ViajeDataBase(this.service, this.clienteService, this.choferService, this.estadoService);
         this.dataSource = new ViajeDataSource(this.dataBase, this.sort);
         this.change.detectChanges();
 
@@ -77,6 +81,7 @@ export class ViajeGridComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.colorEstado = 'black';
         this.refreshGrid();
     }
 

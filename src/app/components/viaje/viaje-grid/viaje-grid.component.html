@@ -16,32 +16,44 @@
         <md-table #table [dataSource]="dataSource" mdSort>
             <ng-container mdColumnDef="cliente">
                 <md-header-cell *mdHeaderCellDef md-sort-header> CLIENTE </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.clienteText}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}"> {{element.clienteText}}</font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="chofer">
                 <md-header-cell *mdHeaderCellDef md-sort-header> CHOFER </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.choferText}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}"> {{element.choferText}}</font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="origen">
                 <md-header-cell *mdHeaderCellDef md-sort-header> ORIGEN </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.origen}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}"> {{element.origen}}</font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="destino">
                 <md-header-cell *mdHeaderCellDef md-sort-header> DESTINO </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.destino}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}"> {{element.destino}}</font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="estado">
                 <md-header-cell *mdHeaderCellDef md-sort-header> ESTADO </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.estado}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}">{{element.estadoText}}</font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="precio">
                 <md-header-cell *mdHeaderCellDef md-sort-header> PRECIO </md-header-cell>
-                <md-cell *mdCellDef="let element"> {{element.precio}} </md-cell>
+                <md-cell *mdCellDef="let element">
+                    <font color="{{(element.estado == 1) ? 'red' : (element.estado == 2) ? 'blue' : 'green'}}">$ {{element.precio}} </font>
+                </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="accion">
@@ -52,6 +64,9 @@
                     </button>
                     <button type="button" (click)="remove(element.id)" class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button *ngIf="element.estado == 2" type="button" [routerLink]="['/geoloc']" class="btn btn-info">
+                        <span class="glyphicon glyphicon-globe"></span>
                     </button>
                 </md-cell>
             </ng-container>
